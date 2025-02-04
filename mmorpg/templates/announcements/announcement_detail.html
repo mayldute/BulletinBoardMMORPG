@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ announcement.header }}</title>
+</head>
+<body>
+
+{% block content %}
+  <h1>{{ announcement.header }}</h1>
+  <p>{{ announcement.content }}</p>
+  <p><strong>Статус:</strong> {{ announcement.get_status_display }}</p>
+
+  {% if is_owner %}
+    {% if announcement.status == "ACTIVE" or announcement.status == "INACTIVE"%} 
+      <form method="post" action="{% url 'change_announcement_status' announcement.id %}">
+        {% csrf_token %}
+        <label for="status">Изменить статус:</label>
+        <select name="status" id="status">
+          {% for value, label in status_choices %}
+            <option value="{{ value }}" {% if announcement.status == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Сохранить</button>
+      </form>
+    {% endif %}
+  {% endif %}
+
+  <hr>
+
+  {% if not is_owner %}
+    {% if user.is_authenticated %}
+      <h3>Оставьте свой отклик:</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    {% else %}
+      <p>Вы должны быть авторизованы, чтобы оставить отклик.</p>
+      
+    {% endif %}  
+  {% endif %}
+
+  <h3>Отклики:</h3>
+  <ul>
+    {% for respond in responds %}
+      <li>
+        <strong>{{ respond.user.username }}</strong>: {{ respond.text }} 
+        <span>Статус: {{ respond.get_status_display }}</span>
+
+        {% if is_owner and respond.status == "EXP" %}
+          <form method="post" action="{% url 'change_respond_status' respond.id %}">
+            {% csrf_token %}
+            <button type="submit" name="status" value="ACP">Принять</button>
+            <button type="submit" name="status" value="REJ">Отклонить</button>
+          </form>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li>Еще нет откликов.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+</body>
+</html>

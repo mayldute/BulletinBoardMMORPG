@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ announcement.header }}</title>
+</head>
+<body>
+
+{% block content %}
+    <p>{{ respond.status }}</p>
+    <p>{{ respond.text }}</p>
+
+    {% if respond.status == "EXP" %}  
+        <form method="post" action="{% url 'change_respond_status' respond.id %}">
+            {% csrf_token %}
+            <button type="submit" name="status" value="ACP">Принять</button>
+            <button type="submit" name="status" value="REJ">Отклонить</button>
+        </form>
+    {% endif %}
+{% endblock %}
+
+</body>
+</html>

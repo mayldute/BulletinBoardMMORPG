@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать объявление</title>
+
+    <!-- Подключаем стили для TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/5moda91lezdgclo0k1xdp6t1y9et2eq80xkvv2axkar2q320/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',  // Выбираем все текстовые области на странице
+            plugins: 'image media',
+            toolbar: 'undo redo | styleselect | bold italic | link | image media',
+            height: 500,
+            menubar: false
+        });
+    </script>
+</head>
+<body>
+
+<h1>Создать объявление</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Создать</button>
+</form>
+
+</body>
+</html>

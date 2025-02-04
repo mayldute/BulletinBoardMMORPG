@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отклик принят</title>
+</head>
+<body>
+    <h1>Здравствуйте, {{ user.username }}!</h1>
+    <p>Ваш отклик на объявление "<strong>{{ announcement.header }}</strong>" был принят.</p>
+    <p>Текст отклика: {{ respond.text }}</p>
+    <p>Вы можете просмотреть подробности по следующей ссылке: <a href="{{ respond_url }}">Перейти к отклику</a></p>
+</body>
+</html>
