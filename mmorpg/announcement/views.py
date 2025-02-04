@@ -55,7 +55,7 @@ class AnnouncementDetail(DetailView):
             respond.user = request.user
             respond.save()
 
-            notify_about_new_respond(respond.id)
+            notify_about_new_respond.delay(respond.id)
             return redirect(reverse_lazy('announcement_detail', kwargs={'pk': announcement.pk})) 
         
 
