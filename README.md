@@ -4,6 +4,25 @@
 
 BulletinBoardMMORPG is a web application for creating and managing advertisements in MMORPGs. Users can create ads, respond to them, and manage the status of ads and responses.
 
+## API Features
+
+The API provides the following features:
+
+- Adding a new advertisement.
+- Retrieving an advertisement by ID.
+- Updating advertisement data.
+- Retrieving advertisements by user email.
+- Working with advertisement images.
+
+## Technologies
+
+- **Django** – for creating the web application.
+- **Django REST Framework** – for creating the API.
+- **PostgreSQL** – for data storage.
+- **Celery** – for asynchronous task processing.
+- **Redis** – for Celery task broker.
+- **TinyMCE** – for content editing in advertisements.
+
 ## Installation
 
 1. Clone the repository:
@@ -24,7 +43,7 @@ BulletinBoardMMORPG is a web application for creating and managing advertisement
     ```
 
 4. Set up environment variables:
-    Create a [`.env`](.env) file in the root directory of the project and add the following lines:
+    Create a [`.env`](.env ) file in the root directory of the project and add the following lines:
     ```env
     DB_LOGIN=<your login>
     DB_PASSWORD=<your password>
@@ -62,9 +81,9 @@ BulletinBoardMMORPG is a web application for creating and managing advertisement
 
 ## Project Structure
 
-- [`announcement/`](mmorpg/announcement/models.py) - application for managing ads and responses.
-- [`users/`](mmorpg/users/__init__.py) - application for managing users and email verification.
-- [`mmorpg`](mmorpg) - main project application containing settings and configurations.
+- [`announcement/`](mmorpg/announcement/models.py ) - application for managing ads and responses.
+- [`users/`](mmorpg/users/__init__.py ) - application for managing users and email verification.
+- [`mmorpg`](mmorpg ) - main project application containing settings and configurations.
 
 ## Setting up Celery
 
@@ -84,7 +103,4 @@ Celery is used for sending notifications. Make sure you have Redis installed and
     ```sh
     celery -A mmorpg worker --loglevel=info
     ```
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+    
