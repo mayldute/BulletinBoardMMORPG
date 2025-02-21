@@ -28,7 +28,7 @@ The API provides the following features:
 1. Clone the repository:
     ```sh
     git clone <your repository URL>
-    cd BulletinBoardMMORPG
+    cd bulletinboard
     ```
 
 2. Create and activate a virtual environment:
@@ -81,9 +81,9 @@ The API provides the following features:
 
 ## Project Structure
 
-- [`announcement/`](mmorpg/announcement/models.py ) - application for managing ads and responses.
-- [`users/`](mmorpg/users/__init__.py ) - application for managing users and email verification.
-- [`mmorpg`](mmorpg ) - main project application containing settings and configurations.
+- [`announcement/`](mmorpg/announcement) - application for managing ads and responses.
+- [`users/`](mmorpg/users) - application for managing users and email verification.
+- [`mmorpg`](mmorpg) - main project application containing settings and configurations.
 
 ## Setting up Celery
 
